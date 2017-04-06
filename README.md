@@ -8,15 +8,34 @@
 
 This module will add a checkbox field on Product > Images that will allow you to select which image to activate (show in frontoffice).
 
-## After installadtion
+The `Product::getImages()`, `Image::getImages()` and `Image::hasImages()` methods are replaced to get only `pia_active = 1` images.
 
-The module just override product administrator images template and add a new field on `Image` class (`pia_active`).
+## Restrictions
 
-After installed you will need to edit your theme product views to do the check of `pia_active` field to see if you will allow that product image to be shown (pia_active = 1) or not (pia_active = 0).
+The module does not allow to active/deactive cover images.
 
-## Example of theme product view template
+# Contribute
 
-Example based on `default` Prestashop 1.6 theme
+Fork this repository and contribute to more funcionalities or bug fixes.
 
-```php
-```
+# License
+
+Copyright (c) 2017 Glauber Portella
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
