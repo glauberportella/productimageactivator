@@ -8,7 +8,7 @@
 
 This module will add a checkbox field on Product > Images that will allow you to select which image to activate (show in frontoffice).
 
-The `Product::getImages()`, `Image::getImages()` and `Image::hasImages()` methods are replaced to get only `pia_active = 1` images.
+The `Product::getImages()` and `Image::hasImages()` methods are replaced to get only `pia_active = 1` images.
 
 ## Restrictions
 
