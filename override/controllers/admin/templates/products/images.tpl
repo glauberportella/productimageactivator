@@ -85,7 +85,7 @@
 		</tbody>
 	</table>
 	<table id="lineType" style="display:none;">
-		<tr id="image_id">
+		<tr id="image_id" data-cover="not_cover">
 			<td>
 				<a href="{$smarty.const._THEME_PROD_DIR_}image_path.jpg" class="fancybox">
 					<img
@@ -121,7 +121,7 @@
 				</a>
 			</td>
 			<td class="pia_active">
-				<a href="#">
+				<a href="#" class="pia_active_toggle">
 					<i class="icon-active-check-empty icon-2x activated"></i>
 				</a>
 			</td>
@@ -146,9 +146,14 @@
 		{literal}
 		//Ready Function
 
-		function imageLine(id, path, position, cover, active, shops, legend)
+		function imageLine(id, path, position, is_cover, cover, active, shops, legend)
 		{
+
 			line = $("#lineType").html();
+			if (is_cover) {
+				// remove check for active (cover images can`t be deactivated)
+				line = line.replace(/not_cover/g, 'is_cover');
+			}
 			line = line.replace(/image_id/g, id);
 			line = line.replace(/(\/)?[a-z]{0,2}-default/g, function($0, $1){
 				return $1 ? $1 + path : $0;
@@ -170,6 +175,11 @@
 				});
 			}
 			$("#imageList").append(line);
+
+			// remove active checkbox for cover image
+			if (is_cover) {
+				$('#'+id+' a.pia_active_toggle').remove();
+			}
 		}
 
 		$(document).ready(function(){
@@ -189,7 +199,7 @@
 				}
 				else
 					assoc = false;
-				imageLine({$image->id}, "{$image->getExistingImgPath()}", {$image->position}, "{if $image->cover}icon-check-sign{else}icon-check-empty{/if}", "{if $image->pia_active}icon-check-sign{else}icon-check-empty{/if}", assoc, "{$image->legend[$default_language]|escape:'htmlall'}");
+				imageLine({$image->id}, "{$image->getExistingImgPath()}", {$image->position}, {if $image->cover}true{else}false{/if}, "{if $image->cover}icon-check-sign{else}icon-check-empty{/if}", "{if $image->pia_active}icon-check-sign{else}icon-check-empty{/if}", assoc, "{$image->legend[$default_language]|escape:'htmlall'}");
 			{/foreach}
 			{literal}
 			var originalOrder = false;

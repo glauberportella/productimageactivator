@@ -13,6 +13,11 @@ class AdminProductsController extends AdminProductsControllerCore
         }
 
         $img = new Image((int)Tools::getValue('id_image'));
+        // does not change cover image active state
+        if ($img->cover) {
+            return;
+        }
+
         if (!isset($img->pia_active)) {
         	$this->jsonConfirmation($this->l('Sucesso!'));
         }
