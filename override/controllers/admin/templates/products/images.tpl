@@ -167,7 +167,7 @@
 			line = line.replace(/icon-active-check-empty/g, active);
 			line = line.replace(/<tbody>/gi, "");
 			line = line.replace(/<\/tbody>/gi, "");
-			if (shops != false)
+			if (shops != false && shops != undefined)
 			{
 				$.each(shops, function(key, value){
 					if (value == 1)

@@ -121,14 +121,10 @@ class ProductImageActivator extends Module
 	}
 
 	protected function copyTemplates() {
-		if (file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl')) {
-			return true;
-		}
-
 		if (!file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products')) {
 			mkdir(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products', '0777', true);
 		}
-
+		
 		// copy files
 		return copy(
 			_PS_MODULE_DIR_.$this->name.'/override/controllers/admin/templates/products/images.tpl',
@@ -138,9 +134,8 @@ class ProductImageActivator extends Module
 
 	protected function deleteTemplates() {
 		if (!file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl')) {
-			return true;
+			return false;
 		}
-
 		return unlink(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl');
 	}
 }
