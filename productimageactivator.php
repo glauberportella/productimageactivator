@@ -124,18 +124,36 @@ class ProductImageActivator extends Module
 		if (!file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products')) {
 			mkdir(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products', '0777', true);
 		}
+
+		if (!file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/helpers/uploader')) {
+			mkdir(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/helpers/uploader', '0777', true);
+		}
 		
 		// copy files
-		return copy(
+		$success = copy(
 			_PS_MODULE_DIR_.$this->name.'/override/controllers/admin/templates/products/images.tpl',
 			_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl'
 		);
+
+		$success &= copy(
+			_PS_MODULE_DIR_.$this->name.'/override/controllers/admin/templates/products/helpers/uploader/ajax.tpl',
+			_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/helpers/uploader/ajax.tpl'
+		);
+
+		return (bool) $success;
 	}
 
 	protected function deleteTemplates() {
-		if (!file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl')) {
-			return false;
+		$success = true;
+
+		if (file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl')) {
+			$success &= unlink(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl');
 		}
-		return unlink(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/images.tpl');
+		
+		if (file_exists(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/helpers/uploader/ajax.tpl')) {
+			$success &= unlink(_PS_OVERRIDE_DIR_.'controllers/admin/templates/products/helpers/uploader/ajax.tpl');
+		}
+
+		return (bool) $success;
 	}
 }

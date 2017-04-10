@@ -2,7 +2,7 @@
 
 class Image extends ImageCore
 {
-	public $pia_active;
+	public $pia_active = 1;
 
 	public function __construct($id = null, $id_lang = null) {
 		self::$definition['fields']['pia_active'] = array(
