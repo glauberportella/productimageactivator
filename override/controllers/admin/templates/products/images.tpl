@@ -150,10 +150,10 @@
 		{
 
 			line = $("#lineType").html();
-			if (is_cover) {
-				// remove check for active (cover images can`t be deactivated)
-				line = line.replace(/not_cover/g, 'is_cover');
-			}
+			// if (is_cover) {
+			// 	// remove check for active (cover images can`t be deactivated)
+			// 	line = line.replace(/not_cover/g, 'is_cover');
+			// }
 			line = line.replace(/image_id/g, id);
 			line = line.replace(/(\/)?[a-z]{0,2}-default/g, function($0, $1){
 				return $1 ? $1 + path : $0;
@@ -177,9 +177,9 @@
 			$("#imageList").append(line);
 
 			// remove active checkbox for cover image
-			if (is_cover) {
-				$('#'+id+' a.pia_active_toggle').remove();
-			}
+			// if (is_cover) {
+			// 	$('#'+id+' a.pia_active_toggle').remove();
+			// }
 		}
 
 		$(document).ready(function(){
