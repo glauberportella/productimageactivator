@@ -83,8 +83,12 @@
 									var active = response.pia_active == "1" ? "icon-check-sign" : "icon-check-empty";
 									var is_cover = response.cover == "1";
 
-									if (response.cover == "1")
+									if (response.cover == "1") {
+										// clear any previous checked cover image
+										$('.covered').removeClass('icon-check-sign').addClass('icon-check-empty');
+										// the new cover
 										cover = "icon-check-sign";
+									}
 
 									if (typeof response.legend !== 'undefined' && response.legend != null)
 										legend = response.legend[{$default_language|intval}];

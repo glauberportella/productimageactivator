@@ -45,6 +45,11 @@ class AdminProductsController extends AdminProductsControllerCore
             if (isset($file['error']) && (!is_numeric($file['error']) || $file['error'] != 0)) {
                 continue;
             }
+            
+            // clear any cover image if $image->cover = 1 to prevent duplicate integrity violation
+            if ($image->cover == 1) {
+            	Image::deleteCover($image->id_product);
+            }
 
             if (!$image->add()) {
                 $file['error'] = Tools::displayError('Error while creating additional image');
